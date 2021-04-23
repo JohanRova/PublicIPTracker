@@ -34,10 +34,10 @@ namespace PublicIPTrackerApp.Models
         }
         public void LoadFromFile()
         {
-            string json = File.ReadAllTextAsync("ipListing.json").Result;
             try 
             {
-            IPList = JsonSerializer.Deserialize<List<IPInformation>>(json);
+                string json = File.ReadAllTextAsync("ipListing.json").Result;
+                IPList = JsonSerializer.Deserialize<List<IPInformation>>(json);
             }
             catch(Exception e)
             {

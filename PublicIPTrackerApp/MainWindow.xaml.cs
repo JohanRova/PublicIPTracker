@@ -39,9 +39,9 @@ namespace PublicIPTrackerApp
             Width = snugContentWidth + 2 * verticalBorderWidth;
             Height = snugContentHeight + captionHeight + 2 * horizontalBorderHeight;*/
 
-            this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 1);
+            this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.97);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.5);
-            WindowStartupLocation = WindowStartupLocation.Manual
+
 
         }
 

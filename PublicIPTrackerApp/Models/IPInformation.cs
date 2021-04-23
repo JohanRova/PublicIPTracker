@@ -8,8 +8,6 @@ namespace PublicIPTrackerApp.Models
 {
     struct IPInformation
     {
-        //readonly string publicIP;
-        //readonly DateTime IPTimestamp;
         public readonly string publicIP { get; }
         public readonly DateTime IPTimeStamp { get; }
 
