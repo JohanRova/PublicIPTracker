@@ -41,7 +41,7 @@ namespace PublicIPTrackerApp.Models
             }
             catch(Exception e)
             {
-                //Do some error shit here
+                //TODO: Error handling
                 File.Create("ipListing.json");
             }
 

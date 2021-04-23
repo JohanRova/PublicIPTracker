@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PublicIPTrackerApp.Models;
+using PublicIPTrackerApp.Pages;
 
 namespace PublicIPTrackerApp
 {
@@ -28,21 +29,9 @@ namespace PublicIPTrackerApp
             InitializeComponent();
             IPHandler.LoadFromFile();
 
-            //testing size below
-            /*const int snugContentWidth = 300;
-            const int snugContentHeight = 300;
-
-            var horizontalBorderHeight = SystemParameters.ResizeFrameHorizontalBorderHeight;
-            var verticalBorderWidth = SystemParameters.ResizeFrameVerticalBorderWidth;
-            var captionHeight = SystemParameters.CaptionHeight;
-
-            Width = snugContentWidth + 2 * verticalBorderWidth;
-            Height = snugContentHeight + captionHeight + 2 * horizontalBorderHeight;*/
-
+            //For initial size
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.97);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.5);
-
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -57,6 +46,11 @@ namespace PublicIPTrackerApp
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             IPHandler.SaveToFile();
+        }
+
+        private void MainPageNav_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new MainPage();
         }
     }
 }
