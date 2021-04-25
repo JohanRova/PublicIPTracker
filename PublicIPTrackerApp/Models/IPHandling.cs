@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
 using PublicIPTrackerApp.Pages;
+using Newtonsoft.Json;
 
 namespace PublicIPTrackerApp.Models
 {
@@ -30,7 +31,7 @@ namespace PublicIPTrackerApp.Models
 
         public void SaveToFile()
         {
-            string json = JsonSerializer.Serialize(IPList);
+            string json = System.Text.Json.JsonSerializer.Serialize(IPList);
             File.WriteAllTextAsync("ipListing.json", json);
             
         }
@@ -39,14 +40,18 @@ namespace PublicIPTrackerApp.Models
             try 
             {
                 string json = File.ReadAllTextAsync("ipListing.json").Result;
-                IPList = JsonSerializer.Deserialize<List<IPInformation>>(json);
+                IPList = JsonConvert.DeserializeObject<List<IPInformation>>(json);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 //TODO: Error handling
                 File.Create("ipListing.json");
             }
 
+        }
+        public IPHandling()
+        {
+            LoadFromFile();
         }
 
     }
