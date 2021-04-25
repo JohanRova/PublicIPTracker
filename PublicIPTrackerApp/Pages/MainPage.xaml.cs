@@ -17,11 +17,14 @@ using PublicIPTrackerApp.Models;
 
 namespace PublicIPTrackerApp.Pages
 {
+
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
     public partial class MainPage : Page
     {
+        IPHandling IPHandler = new IPHandling();
+
         public MainPage()
         {
             InitializeComponent();

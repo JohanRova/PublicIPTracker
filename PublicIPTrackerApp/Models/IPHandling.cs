@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
+using PublicIPTrackerApp.Pages;
 
 namespace PublicIPTrackerApp.Models
 {
@@ -18,6 +19,7 @@ namespace PublicIPTrackerApp.Models
             string ip = await httpClient.GetStringAsync("https://api.ipify.org");
             return ip;
         }
+
 
         public async Task AddCurrentIPToList()
         {
