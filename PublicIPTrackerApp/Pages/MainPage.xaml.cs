@@ -25,11 +25,12 @@ namespace PublicIPTrackerApp.Pages
         public MainPage()
         {
             InitializeComponent();
-
             //Testing connection
-            ConnTest();
+            //ConnTest();
             //TestEvent();
-            ConnectionTester += ConnectionEvent;
+            //ConnectionTester += ConnectionEvent;
+            
+
 
         }
         public event EventHandler ConnectionTester
@@ -74,9 +75,9 @@ namespace PublicIPTrackerApp.Pages
             }
         }
 
-        private void disconnected(object s, EventArgs e)
+        void AddToListbox(IPInformation ipinfo)
         {
-
+            ListOfIps.Items.Add(new ListBoxItem() { Content = $"{ipinfo.publicIP} TIMESTAMP: {ipinfo.IPTimeStamp.ToShortDateString()}" });
         }
     }
 }

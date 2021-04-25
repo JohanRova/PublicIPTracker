@@ -16,7 +16,9 @@
         <Border BorderThickness="2" BorderBrush="Black" Grid.Column="1">
             <DockPanel LastChildFill="False">
                 <TextBlock Text="Historical IPs" TextWrapping="Wrap" FontSize="20" DockPanel.Dock="Top" Height="27"/>
-                <TextBox x:Name="OutputIPs" Text="Your list of historical IPs will pop up here." FontFamily="Consolas" FontSize="13" TextWrapping="Wrap" DockPanel.Dock="Right" Width="358"/>
+                <ListBox x:Name="ListOfIps" Width="357">
+                </ListBox>
+                <!--<TextBox x:Name="OutputIPs" Text="Your list of historical IPs will pop up here." FontFamily="Consolas" FontSize="13" TextWrapping="Wrap" DockPanel.Dock="Right" Width="358"/> -->
             </DockPanel>
         </Border>
 

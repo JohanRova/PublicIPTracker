@@ -12,7 +12,7 @@ namespace PublicIPTrackerApp.Models
     {
         public List<IPInformation> IPList= new List<IPInformation>();
 
-        public async Task<string> CheckCurrentIPAsync()
+        private async Task<string> CheckCurrentIPAsync()
         {
             HttpClient httpClient = new HttpClient();
             string ip = await httpClient.GetStringAsync("https://api.ipify.org");

@@ -32,6 +32,10 @@ namespace PublicIPTrackerApp
             //For initial size
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.97);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.5);
+
+            //For debug only
+            //IPHandler.AddCurrentIPToList();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,7 +54,18 @@ namespace PublicIPTrackerApp
 
         private void MainPageNav_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new MainPage();
+            //Frame.Content = new MainPage();
+            Frame.Navigate(typeof(MainPage), IPHandler);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            IPHandler.AddCurrentIPToList();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            IPHandler.SaveToFile();
         }
     }
 }

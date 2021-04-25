@@ -13,6 +13,8 @@
             <MenuItem x:Name="MainPageNav" Header="Main window" Height="20" Click="MainPageNav_Click"/>
         </Menu>
         <Frame x:Name="Frame" Content="Frame" Margin="0,20,0,0" NavigationUIVisibility="Hidden" />
+        <Button Content="Debugbutton, to get ip" HorizontalAlignment="Left" Margin="70,100,0,0" VerticalAlignment="Top" Height="34" Width="190" Click="Button_Click_2"/>
+        <Button Content="Debugbutton to save to file" HorizontalAlignment="Left" Margin="172,172,0,0" VerticalAlignment="Top" Height="34" Width="187" Click="Button_Click_3"/>
 
     </Grid>
 </Window>
