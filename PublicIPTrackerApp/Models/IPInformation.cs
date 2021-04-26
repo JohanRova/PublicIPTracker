@@ -10,11 +10,13 @@ namespace PublicIPTrackerApp.Models
     {
         public readonly string publicIP { get; }
         public readonly DateTime IPTimeStamp { get; }
+        public readonly bool Unique { get; }
 
-        public IPInformation(string publicIP, DateTime IPTimestamp)
+        public IPInformation(string publicIP, DateTime IPTimestamp, bool unique)
         {
             this.publicIP = publicIP;
             this.IPTimeStamp = IPTimestamp;
+            this.Unique = unique;
         }
     }
 }

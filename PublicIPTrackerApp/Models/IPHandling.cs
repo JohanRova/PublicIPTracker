@@ -30,7 +30,7 @@ namespace PublicIPTrackerApp.Models
         {
             var ip = await CheckCurrentIPAsync();
             DateTime timeStamp = DateTime.Now;
-            IPInformation ipNow = new IPInformation(ip, timeStamp);
+            IPInformation ipNow = new IPInformation(ip, timeStamp, UniqueCheck(ip));
             IPList.Add(ipNow);
             return ipNow;
         }
@@ -78,10 +78,18 @@ namespace PublicIPTrackerApp.Models
         public List<ListBoxItem> FormatIntoListbox(List<IPInformation> ipInfoList)
         {
             List<ListBoxItem> result = new List<ListBoxItem>();
+            //int uniqueness = -1;
             foreach(IPInformation ip in ipInfoList)
             {
                 StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
-                stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Blue, Width = 10, Height = 10 });
+                if(UniqueCheck(ip.publicIP))
+                {
+                    stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Blue, Width = 10, Height = 10 });
+                }
+                else
+                {
+                    stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Red, Width = 10, Height = 10 });
+                }
                 stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
                 stackpanel.Children.Add(new TextBox() { Text = ip.publicIP });
                 stackpanel.Children.Add(new TextBlock() { Text = "Timestamp: ", Margin = new Thickness { Left = 5 } });
@@ -91,5 +99,23 @@ namespace PublicIPTrackerApp.Models
             return result;
         }
 
+        //Unique checking
+        private bool UniqueCheck(string ip)
+        {
+            int uniqueness = -1;
+            bool result = true;
+            foreach(IPInformation item in IPList)
+            {
+                if(item.publicIP == ip)
+                {
+                    uniqueness++;
+                    if(uniqueness > 0)
+                    {
+                        result = false;
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

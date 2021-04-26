@@ -36,6 +36,7 @@ namespace PublicIPTrackerApp.Pages
 
             //ListOfIps.Items.Add(IPHandler.FormatIntoListbox(IPHandler.IPList[0]));
             AddSeveraltoListbox(ListOfIps, IPHandler.FormatIntoListbox(IPHandler.IPList));
+            //IPHandler.AddCurrentIPToList();
         }
         public event EventHandler ConnectionTester
         {
@@ -78,18 +79,6 @@ namespace PublicIPTrackerApp.Pages
                 
             }
         }
-        //Test adding to listbox
-        /*This has been moved to IPHandling
-         * void AddToListbox(IPInformation ipinfo)
-        {
-            StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
-            stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Green, Width = 10, Height = 10 });
-            stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
-            stackpanel.Children.Add(new TextBox() { Text = ipinfo.publicIP });
-            stackpanel.Children.Add(new TextBlock() { Text = "Timestamp: ", Margin = new Thickness { Left = 5 } });
-            stackpanel.Children.Add(new TextBox() { Text = ipinfo.IPTimeStamp.ToString("HH:mm:ss") });
-            ListOfIps.Items.Add(new ListBoxItem() { Content = stackpanel });
-        }*/
 
         public void AddSeveraltoListbox(ListBox listbox, List<ListBoxItem> ListboxItems)
         {
