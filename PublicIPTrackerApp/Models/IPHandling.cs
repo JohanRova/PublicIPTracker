@@ -22,12 +22,16 @@ namespace PublicIPTrackerApp.Models
         }
 
 
-        public async Task AddCurrentIPToList()
+        public async Task<IPInformation> AddCurrentIPToList()
         {
             var ip = await CheckCurrentIPAsync();
             DateTime timeStamp = DateTime.Now;
-            IPList.Add(new IPInformation(ip, timeStamp));
+            IPInformation ipNow = new IPInformation(ip, timeStamp);
+            IPList.Add(ipNow);
+            return ipNow;
         }
+
+
 
         public void SaveToFile()
         {

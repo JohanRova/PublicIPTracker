@@ -32,7 +32,7 @@ namespace PublicIPTrackerApp.Pages
             //ConnTest();
             //TestEvent();
             //ConnectionTester += ConnectionEvent;
-            
+            AddToListbox(IPHandler.IPList[0]);
 
 
         }
@@ -78,9 +78,30 @@ namespace PublicIPTrackerApp.Pages
             }
         }
 
+        //Test adding to listbox
         void AddToListbox(IPInformation ipinfo)
         {
-            ListOfIps.Items.Add(new ListBoxItem() { Content = $"{ipinfo.publicIP} TIMESTAMP: {ipinfo.IPTimeStamp.ToShortDateString()}" });
+            //ListOfIps.Items.Add(new ListBoxItem() { Content = new TextBox { Text = "lmao" }});
+            StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
+            stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Green, Width = 10, Height = 10 });
+            stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
+            stackpanel.Children.Add(new TextBox() { Text = "lmao" });
+            stackpanel.Children.Add(new TextBlock() { Text = "Timestamp: ", Margin = new Thickness { Left = 5 } });
+            stackpanel.Children.Add(new TextBox() { Text = "lmao2" });
+            ListOfIps.Items.Add(new ListBoxItem() { Content = stackpanel });
+        }
+
+
+        /*void AddToListbox(IPInformation ipinfo)
+        {
+            ListOfIps.Items.Add(new ListBoxItem() { Content = $"{ipinfo.publicIP} TIMESTAMP: {ipinfo.IPTimeStamp.ToShortDateString()}", Background = Brushes.Green});
+        }*/
+        void AddToListbox(List<IPInformation> ipinfos)
+        {
+            foreach(IPInformation infos in ipinfos)
+            {
+                ListOfIps.Items.Add(new ListBoxItem() { Content = $"{infos.publicIP} TIMESTAMP: {infos.IPTimeStamp.ToShortDateString()}" });
+            }
         }
     }
 }
