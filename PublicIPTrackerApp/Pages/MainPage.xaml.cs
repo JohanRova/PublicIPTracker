@@ -32,9 +32,10 @@ namespace PublicIPTrackerApp.Pages
             //ConnTest();
             //TestEvent();
             //ConnectionTester += ConnectionEvent;
-            AddToListbox(IPHandler.IPList[0]);
 
 
+            //ListOfIps.Items.Add(IPHandler.FormatIntoListbox(IPHandler.IPList[0]));
+            AddSeveraltoListbox(ListOfIps, IPHandler.FormatIntoListbox(IPHandler.IPList));
         }
         public event EventHandler ConnectionTester
         {
@@ -77,30 +78,24 @@ namespace PublicIPTrackerApp.Pages
                 
             }
         }
-
         //Test adding to listbox
-        void AddToListbox(IPInformation ipinfo)
+        /*This has been moved to IPHandling
+         * void AddToListbox(IPInformation ipinfo)
         {
-            //ListOfIps.Items.Add(new ListBoxItem() { Content = new TextBox { Text = "lmao" }});
             StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
             stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Green, Width = 10, Height = 10 });
             stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
-            stackpanel.Children.Add(new TextBox() { Text = "lmao" });
+            stackpanel.Children.Add(new TextBox() { Text = ipinfo.publicIP });
             stackpanel.Children.Add(new TextBlock() { Text = "Timestamp: ", Margin = new Thickness { Left = 5 } });
-            stackpanel.Children.Add(new TextBox() { Text = "lmao2" });
+            stackpanel.Children.Add(new TextBox() { Text = ipinfo.IPTimeStamp.ToString("HH:mm:ss") });
             ListOfIps.Items.Add(new ListBoxItem() { Content = stackpanel });
-        }
-
-
-        /*void AddToListbox(IPInformation ipinfo)
-        {
-            ListOfIps.Items.Add(new ListBoxItem() { Content = $"{ipinfo.publicIP} TIMESTAMP: {ipinfo.IPTimeStamp.ToShortDateString()}", Background = Brushes.Green});
         }*/
-        void AddToListbox(List<IPInformation> ipinfos)
+
+        public void AddSeveraltoListbox(ListBox listbox, List<ListBoxItem> ListboxItems)
         {
-            foreach(IPInformation infos in ipinfos)
+            foreach(ListBoxItem item in ListboxItems)
             {
-                ListOfIps.Items.Add(new ListBoxItem() { Content = $"{infos.publicIP} TIMESTAMP: {infos.IPTimeStamp.ToShortDateString()}" });
+                listbox.Items.Add(item);
             }
         }
     }
