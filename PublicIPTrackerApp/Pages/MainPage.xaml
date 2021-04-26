@@ -21,6 +21,10 @@
                 <!--<TextBox x:Name="OutputIPs" Text="Your list of historical IPs will pop up here." FontFamily="Consolas" FontSize="13" TextWrapping="Wrap" DockPanel.Dock="Right" Width="358"/> -->
             </DockPanel>
         </Border>
+        <DockPanel LastChildFill="False" Margin="10,10,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="425">
+            <TextBlock Text="Current IP: " TextWrapping="Wrap" FontSize="28" Width="200"/>
+            <TextBox x:Name="CurrentIPBox" Text="" FontSize="28" TextWrapping="Wrap" Width="224"/>
+        </DockPanel>
 
 
     </Grid>

@@ -28,12 +28,9 @@ namespace PublicIPTrackerApp.Pages
         public MainPage()
         {
             InitializeComponent();
-            //Testing connection
-            //ConnTest();
-            //TestEvent();
-            //ConnectionTester += ConnectionEvent;
-
-
+            //SetTextBox("lol", CurrentIPText);
+            //CurrentIPText.Text = $"Your current IP is: {IPHandler.CheckCurrentIPAsync().ToString()}";
+            CurrentIPBox.Text = IPHandler.CheckCurrentIPAsync().Result;
             //ListOfIps.Items.Add(IPHandler.FormatIntoListbox(IPHandler.IPList[0]));
             AddSeveraltoListbox(ListOfIps, IPHandler.FormatIntoListbox(IPHandler.IPList));
             //IPHandler.AddCurrentIPToList();
@@ -87,5 +84,6 @@ namespace PublicIPTrackerApp.Pages
                 listbox.Items.Add(item);
             }
         }
+
     }
 }

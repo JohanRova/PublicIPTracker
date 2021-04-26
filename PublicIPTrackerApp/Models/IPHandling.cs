@@ -18,10 +18,10 @@ namespace PublicIPTrackerApp.Models
     {
         public List<IPInformation> IPList= new List<IPInformation>();
 
-        private async Task<string> CheckCurrentIPAsync()
+        public async Task<string> CheckCurrentIPAsync()
         {
             HttpClient httpClient = new HttpClient();
-            string ip = await httpClient.GetStringAsync("https://api.ipify.org");
+            string ip = httpClient.GetStringAsync("https://api.ipify.org").Result;
             return ip;
         }
 
@@ -78,11 +78,10 @@ namespace PublicIPTrackerApp.Models
         public List<ListBoxItem> FormatIntoListbox(List<IPInformation> ipInfoList)
         {
             List<ListBoxItem> result = new List<ListBoxItem>();
-            //int uniqueness = -1;
             foreach(IPInformation ip in ipInfoList)
             {
                 StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
-                if(UniqueCheck(ip.publicIP))
+                if(ip.Unique)
                 {
                     stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Blue, Width = 10, Height = 10 });
                 }
@@ -111,7 +110,7 @@ namespace PublicIPTrackerApp.Models
                     uniqueness++;
                     if(uniqueness > 0)
                     {
-                        result = false;
+                        return false;
                     }
                 }
             }
