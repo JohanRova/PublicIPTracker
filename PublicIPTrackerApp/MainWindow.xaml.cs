@@ -33,7 +33,7 @@ namespace PublicIPTrackerApp
 
             //For debug only
             //IPHandler.AddCurrentIPToList();
-
+            //Frame.Content = new MainPage();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -95,5 +95,19 @@ namespace PublicIPTrackerApp.Pages
             }
         }
 
+        private void DebugSaveToFile_Click(object sender, RoutedEventArgs e)
+        {
+            IPHandler.SaveToFile();
+        }
+
+        private void DebugLoadFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            IPHandler.LoadFromFile();
+        }
+
+        private async void DebugAddIPToList_Click(object sender, RoutedEventArgs e)
+        {
+            await IPHandler.AddCurrentIPToList();
+        }
     }
 }

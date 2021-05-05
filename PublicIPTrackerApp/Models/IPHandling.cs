@@ -110,18 +110,25 @@ namespace PublicIPTrackerApp.Models
         {
             int uniqueness = -1;
             bool result = true;
-            foreach(IPInformation item in IPList)
-            {
-                if(item.publicIP == ip)
+            if(IPList != null)
+            { 
+                foreach(IPInformation item in IPList)
                 {
-                    uniqueness++;
-                    if(uniqueness > 0)
+                    if(item.publicIP == ip)
                     {
-                        return false;
+                        uniqueness++;
+                        if(uniqueness > 0)
+                        {
+                            return false;
+                        }
                     }
                 }
+                return result;
             }
-            return result;
+            else
+            {
+                return true;
+            }
         }
     }
 }
