@@ -48,7 +48,10 @@ namespace PublicIPTrackerApp.Models
             try 
             {
                 string json = File.ReadAllTextAsync("ipListing.json").Result;
-                IPList = JsonConvert.DeserializeObject<List<IPInformation>>(json);
+                if(json != "")
+                {
+                    IPList = JsonConvert.DeserializeObject<List<IPInformation>>(json);
+                }
             }
             catch (Exception e)
             {
@@ -66,12 +69,21 @@ namespace PublicIPTrackerApp.Models
         public ListBoxItem FormatIntoListbox(IPInformation ipinfo)
         {
             StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
-            stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Blue, Width = 10, Height = 10 });
+            if(ipinfo.Unique)
+            {
+                stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Green, Width = 10, Height = 10});
+            }
+            else
+            {
+                stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Red, Width = 10, Height = 10 });
+
+            }
             stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
             stackpanel.Children.Add(new TextBox() { Text = ipinfo.publicIP });
             stackpanel.Children.Add(new TextBlock() { Text = "Timestamp: ", Margin = new Thickness { Left = 5 } });
             stackpanel.Children.Add(new TextBox() { Text = ipinfo.IPTimeStamp.ToString("yyyy/MM/dd HH:mm:ss") });
             //ListOfIps.Items.Add(new ListBoxItem() { Content = stackpanel });
+            //TODO: add a tooltip for unique or not
             return new ListBoxItem() { Content = stackpanel };
         }
 

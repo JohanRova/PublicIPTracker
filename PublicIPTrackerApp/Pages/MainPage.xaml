@@ -28,7 +28,7 @@
         <Grid Height="151" VerticalAlignment="Top" Margin="0,896,0,0">
             <TextBlock HorizontalAlignment="Left" Text="Debug buttons" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Red"/>
             <Button x:Name="DebugSaveToFile2" Content="Save to file" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Width="134" Click="DebugSaveToFile_Click"/>
-            <Button x:Name="DebugLoadFromFile2" Content="Save to file" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="134" Click="DebugLoadFromFile_Click"/>
+            <Button x:Name="DebugLoadFromFile2" Content="Load from file" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="134" Click="DebugLoadFromFile_Click"/>
             <Button x:Name="DebugAddIPToList" Content="Add current IP to list" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Width="134" Click="DebugAddIPToList_Click"/>
         </Grid>
 

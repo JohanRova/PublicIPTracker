@@ -80,7 +80,7 @@ namespace PublicIPTrackerApp.Pages
 
         public void AddSeveraltoListbox(ListBox listbox, List<ListBoxItem> ListboxItems)
         {
-            if(ListboxItems != null)
+            if(ListboxItems != null && ListboxItems.Count != 0)
             {
                 foreach(ListBoxItem item in ListboxItems)
                 {
@@ -90,7 +90,7 @@ namespace PublicIPTrackerApp.Pages
             else
             {
                 StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
-                stackpanel.Children.Add(new TextBlock() { Text = "No savefile found!", Foreground = Brushes.Red});
+                stackpanel.Children.Add(new TextBlock() { Text = "No savefile found or empty!", Foreground = Brushes.Red});
                 listbox.Items.Add(stackpanel);
             }
         }
