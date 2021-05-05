@@ -78,24 +78,31 @@ namespace PublicIPTrackerApp.Models
         public List<ListBoxItem> FormatIntoListbox(List<IPInformation> ipInfoList)
         {
             List<ListBoxItem> result = new List<ListBoxItem>();
-            foreach(IPInformation ip in ipInfoList)
+            if (ipInfoList != null)
             {
-                StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
-                if(ip.Unique)
+                foreach (IPInformation ip in ipInfoList)
                 {
-                    stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Blue, Width = 10, Height = 10 });
+                    StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                    if (ip.Unique)
+                    {
+                        stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Blue, Width = 10, Height = 10 });
+                    }
+                    else
+                    {
+                        stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Red, Width = 10, Height = 10 });
+                    }
+                    stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
+                    stackpanel.Children.Add(new TextBox() { Text = ip.publicIP });
+                    stackpanel.Children.Add(new TextBlock() { Text = "Timestamp: ", Margin = new Thickness { Left = 5 } });
+                    stackpanel.Children.Add(new TextBox() { Text = ip.IPTimeStamp.ToString("yyyy/MM/dd HH:mm:ss") });
+                    result.Add(new ListBoxItem() { Content = stackpanel });
                 }
-                else
-                {
-                    stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Red, Width = 10, Height = 10 });
-                }
-                stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
-                stackpanel.Children.Add(new TextBox() { Text = ip.publicIP });
-                stackpanel.Children.Add(new TextBlock() { Text = "Timestamp: ", Margin = new Thickness { Left = 5 } });
-                stackpanel.Children.Add(new TextBox() { Text = ip.IPTimeStamp.ToString("yyyy/MM/dd HH:mm:ss") });
-                result.Add(new ListBoxItem() { Content = stackpanel });
+                return result;
             }
-            return result;
+            else
+            {
+                return null;
+            }
         }
 
         //Unique checking

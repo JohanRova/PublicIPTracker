@@ -33,6 +33,7 @@ namespace PublicIPTrackerApp.Pages
             CurrentIPBox.Text = IPHandler.CheckCurrentIPAsync().Result;
             //ListOfIps.Items.Add(IPHandler.FormatIntoListbox(IPHandler.IPList[0]));
             AddSeveraltoListbox(ListOfIps, IPHandler.FormatIntoListbox(IPHandler.IPList));
+            
             //IPHandler.AddCurrentIPToList();
         }
         public event EventHandler ConnectionTester
@@ -79,9 +80,18 @@ namespace PublicIPTrackerApp.Pages
 
         public void AddSeveraltoListbox(ListBox listbox, List<ListBoxItem> ListboxItems)
         {
-            foreach(ListBoxItem item in ListboxItems)
+            if(ListboxItems != null)
             {
-                listbox.Items.Add(item);
+                foreach(ListBoxItem item in ListboxItems)
+                {
+                    listbox.Items.Add(item);
+                }
+            }
+            else
+            {
+                StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                stackpanel.Children.Add(new TextBlock() { Text = "No savefile found!", Foreground = Brushes.Red});
+                listbox.Items.Add(stackpanel);
             }
         }
 
