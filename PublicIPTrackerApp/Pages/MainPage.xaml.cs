@@ -24,76 +24,18 @@ namespace PublicIPTrackerApp.Pages
     public partial class MainPage : Page
     {
         IPHandling IPHandler = new IPHandling();
+        IPInformation CurrentIP;
 
         public MainPage()
         {
             InitializeComponent();
-            //SetTextBox("lol", CurrentIPText);
-            //CurrentIPText.Text = $"Your current IP is: {IPHandler.CheckCurrentIPAsync().ToString()}";
-            CurrentIPBox.Text = IPHandler.CheckCurrentIPAsync().Result;
-            //ListOfIps.Items.Add(IPHandler.FormatIntoListbox(IPHandler.IPList[0]));
-            AddSeveraltoListbox(ListOfIps, IPHandler.FormatIntoListbox(IPHandler.IPList));
-            
-            //IPHandler.AddCurrentIPToList();
-        }
-        public event EventHandler ConnectionTester
-        {
-            add
-            {
-                //TODO: Logic here
-            }
-            remove
-            {
-                //TODO: Logic here too
-            }
+            CurrentIP = IPHandler.CreateIPInformation().Result;
+            CurrentIPBox.Text = CurrentIP.publicIP;
+            IPHandler.IPList.Add(CurrentIP);
+            IPHandler.AddSeveraltoListbox(ListOfIps, IPHandler.FormatIntoListbox(IPHandler.IPList));
+            IPHandler.SaveToFile();
         }
 
-        public void TestEvent()
-        {
-            ConnectionTester += ConnectionEvent;
-            ConnectionTester -= ConnectionEvent;
-        }
-        public void ConnectionEvent(object sender, EventArgs e)
-        {
-        }
-
-        public void ConnTest()
-        {
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    using (client.OpenRead("http://www.google.com/"))
-                    {
-                        // success
-                    }
-                }
-            }
-            catch
-            {
-                // Raise an event
-                // you might want to check for consistent failures 
-                // before signalling the Internet is down
-                
-            }
-        }
-
-        public void AddSeveraltoListbox(ListBox listbox, List<ListBoxItem> ListboxItems)
-        {
-            if(ListboxItems != null && ListboxItems.Count != 0)
-            {
-                foreach(ListBoxItem item in ListboxItems)
-                {
-                    listbox.Items.Add(item);
-                }
-            }
-            else
-            {
-                StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
-                stackpanel.Children.Add(new TextBlock() { Text = "No savefile found or empty!", Foreground = Brushes.Red});
-                listbox.Items.Add(stackpanel);
-            }
-        }
 
         private void DebugSaveToFile_Click(object sender, RoutedEventArgs e)
         {
@@ -107,7 +49,8 @@ namespace PublicIPTrackerApp.Pages
 
         private async void DebugAddIPToList_Click(object sender, RoutedEventArgs e)
         {
-            await IPHandler.AddCurrentIPToList();
+            IPInformation currentIP = await IPHandler.AddCurrentIPToList();
+            ListOfIps.Items.Add(IPHandler.FormatIntoListbox(currentIP));
         }
     }
 }

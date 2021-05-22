@@ -17,6 +17,7 @@ namespace PublicIPTrackerApp.Models
     class IPHandling
     {
         public List<IPInformation> IPList= new List<IPInformation>();
+        int ConnectionInterval;
 
         public async Task<string> CheckCurrentIPAsync()
         {
@@ -25,6 +26,13 @@ namespace PublicIPTrackerApp.Models
             return ip;
         }
 
+        public async Task<IPInformation> CreateIPInformation()
+        {
+            var ip = await CheckCurrentIPAsync();
+            DateTime timeStamp = DateTime.Now;
+            IPInformation ipNow = new IPInformation(ip, timeStamp, UniqueCheck(ip));
+            return ipNow;
+        }
 
         public async Task<IPInformation> AddCurrentIPToList()
         {
@@ -65,18 +73,20 @@ namespace PublicIPTrackerApp.Models
             LoadFromFile();
         }
 
+        //Connection testing
+
+        //Methods for handling the listbox
         //Create listbox item
         public ListBoxItem FormatIntoListbox(IPInformation ipinfo)
         {
             StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
             if(ipinfo.Unique)
             {
-                stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Green, Width = 10, Height = 10});
+                stackpanel.Children.Add(new Ellipse() { Fill = Brushes.Green, Width = 10, Height = 10});
             }
             else
             {
-                stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Red, Width = 10, Height = 10 });
-
+                stackpanel.Children.Add(new Ellipse() { Fill = Brushes.Red, Width = 10, Height = 10 });
             }
             stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
             stackpanel.Children.Add(new TextBox() { Text = ipinfo.publicIP });
@@ -86,6 +96,7 @@ namespace PublicIPTrackerApp.Models
             //TODO: add a tooltip for unique or not
             return new ListBoxItem() { Content = stackpanel };
         }
+
 
         public List<ListBoxItem> FormatIntoListbox(List<IPInformation> ipInfoList)
         {
@@ -97,11 +108,11 @@ namespace PublicIPTrackerApp.Models
                     StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
                     if (ip.Unique)
                     {
-                        stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Blue, Width = 10, Height = 10 });
+                        stackpanel.Children.Add(new Ellipse() { Fill = Brushes.Green, Width = 10, Height = 10 });
                     }
                     else
                     {
-                        stackpanel.Children.Add(new Rectangle() { Fill = Brushes.Red, Width = 10, Height = 10 });
+                        stackpanel.Children.Add(new Ellipse() { Fill = Brushes.Red, Width = 10, Height = 10 });
                     }
                     stackpanel.Children.Add(new TextBlock() { Text = "IP: ", Margin = new Thickness { Left = 5 } });
                     stackpanel.Children.Add(new TextBox() { Text = ip.publicIP });
@@ -117,10 +128,28 @@ namespace PublicIPTrackerApp.Models
             }
         }
 
+        public void AddSeveraltoListbox(ListBox listbox, List<ListBoxItem> ListboxItems)
+        {
+            if (ListboxItems != null && ListboxItems.Count != 0)
+            {
+                foreach (ListBoxItem item in ListboxItems)
+                {
+                    listbox.Items.Insert(0, item);
+                }
+            }
+            else
+            {
+                StackPanel stackpanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                stackpanel.Children.Add(new TextBlock() { Text = "No savefile found or empty!", Foreground = Brushes.Red });
+                listbox.Items.Insert(0, stackpanel);
+            }
+        }
+        //Listboxhandling stops here
+
         //Unique checking
         private bool UniqueCheck(string ip)
         {
-            int uniqueness = -1;
+            int uniqueness = 0;
             bool result = true;
             if(IPList != null)
             { 
