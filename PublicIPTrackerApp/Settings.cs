@@ -15,19 +15,26 @@ namespace PublicIPTrackerApp
 
         public Settings()
         {
+            
+        }
+        public static Settings CreateSettings()
+        {
             try
             {
                 string json = File.ReadAllTextAsync("settings.json").Result;
                 if (json != "")
                 {
-                    var lol  = JsonConvert.DeserializeObject<Settings>(json);
+                    Settings lol = JsonConvert.DeserializeObject<Settings>(json);
+                    return lol;
                 }
             }
             catch (Exception e)
             {
                 //TODO: Error handling
                 File.Create("settings.json");
+                return null;
             }
+            return null;
         }
     }
 

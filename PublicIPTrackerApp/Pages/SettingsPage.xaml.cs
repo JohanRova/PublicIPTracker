@@ -22,7 +22,7 @@ namespace PublicIPTrackerApp.Pages
     /// </summary>
     public partial class SettingsPage : Page
     {
-        Settings settings = new Settings();
+        Settings settings = Settings.CreateSettings();
 
         public SettingsPage()
         {
