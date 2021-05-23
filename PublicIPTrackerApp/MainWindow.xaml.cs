@@ -45,5 +45,10 @@ namespace PublicIPTrackerApp
         {
             Frame.Content = new MainPage();
         }
+
+        private void SettingsPageNav_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new SettingsPage();
+        }
     }
 }

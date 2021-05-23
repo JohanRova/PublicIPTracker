@@ -1,0 +1,28 @@
+﻿<Page x:Class="PublicIPTrackerApp.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PublicIPTrackerApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1047" d:DesignWidth="960"
+      Title="SettingsPage">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="28" Text="Settings" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <DockPanel LastChildFill="False" Margin="10,64,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="369">
+            <TextBlock Text="Home IP: " TextWrapping="Wrap" FontSize="12" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="HomeIPBox" Text="" FontSize="12" TextWrapping="Wrap" Width="166" VerticalContentAlignment="Center"/>
+        </DockPanel>
+        <Image ToolTipService.InitialShowDelay="555" ToolTip="If you're trying to make sure you're on a specific IP enter it here. If you're not on your home IP you will be alerted. &#x0a;&#x0a;Good if you're using services that use IP whitelisting." HorizontalAlignment="Left" Height="16" Margin="379,68,0,0" VerticalAlignment="Top" Width="16" Source="/Resources/Icons/Question_16x.png"/>
+        <Rectangle HorizontalAlignment="Left" Height="1" Margin="0,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="528"/>
+        <DockPanel LastChildFill="False" Margin="10,94,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="366">
+            <TextBlock Text="IP Check interval: " TextWrapping="Wrap" FontSize="12" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="IPCheckInterval" Text="" FontSize="12" TextWrapping="Wrap" DockPanel.Dock="Right" Width="57" FlowDirection="RightToLeft" VerticalContentAlignment="Center"/>
+        </DockPanel>
+        <Image ToolTipService.InitialShowDelay="555" ToolTipService.ShowDuration="100000" ToolTip="If you're trying to make sure you're on a specific IP enter it here. If you're not on your home IP you will be alerted. &#x0a;&#x0a;Good if you're using services that use IP whitelisting." HorizontalAlignment="Left" Height="16" Margin="379,98,0,0" VerticalAlignment="Top" Width="16" Source="/Resources/Icons/Question_16x.png"/>
+        <Button x:Name="SaveSettingsButton" Content="Save settings" HorizontalAlignment="Left" Margin="735,466,0,0" VerticalAlignment="Top" Click="SaveSettingsButton_Click"/>
+
+
+    </Grid>
+</Page>
