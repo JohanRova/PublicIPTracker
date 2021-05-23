@@ -13,6 +13,7 @@ An app that will check what your public IP is and store it in a list to keep tra
 - [ ] *Maybe uptime tracker*
 - [ ] *Maybe something else I wanna put in lol*
 - [ ] *I'd like to make a mobile version using Xamarin one day* 
+- [ ] Speedtesting because I found a package for it and why not?
 
 
 <i>I'm currently working on a school project so this is taking a backseat. In case anyone is actually looking at this repo. </i>
